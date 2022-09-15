@@ -3,4 +3,78 @@
 @{
 }
 
-<h1>Pizzas</h1>
+<h3>Our Pizzas</h3>
+
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Pizza Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pizza in Model.Pizzas)
+        {
+            <tr>
+                <td>@pizza.Id</td>
+                <td>@pizza.Name</td>
+                <td>@pizza.Price</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<div class="text-center container">
+    <h1>Add a New Pizza</h1>
+    <form method="post" class="mx-auto mt-5 mb-5 px-5 pt-5 pb-5 rounded-5 bg-light col-4">
+        <input 
+            type="text" 
+            asp-for="Pizza.Name" 
+            placeholder="Give pizza a name..." />
+        <br />
+        <input type="checkbox"
+               asp-for="Pizza.TomatoSauce"
+               placeholder="Tomato sauce" />Tomato Sauce
+        <br />
+        <input type="checkbox"
+               asp-for="Pizza.Cheese"
+               placeholder="Cheese" />Cheese
+        <br />
+        <input type="checkbox"
+               asp-for="Pizza.Peperoni"
+               placeholder="Peperoni" />Peperoni
+        <br />
+        <input type="checkbox"
+               asp-for="Pizza.Ham"
+               placeholder="Ham" />Ham
+        <br />
+        <input type="checkbox"
+               asp-for="Pizza.Mushroom"
+               placeholder="Mushroom" />Mushroom
+        <br />
+        <input type="checkbox"
+               asp-for="Pizza.Tuna"
+               placeholder="Tuna" />Tuna
+        <br />
+        <input type="checkbox"
+               asp-for="Pizza.Beef"
+               placeholder="Beef" />Beef
+        <br />
+        <input type="checkbox"
+               asp-for="Pizza.Pineapple"
+               placeholder="Pineapple" />Pineapple
+        <br />
+        <input 
+            type="number" 
+            asp-for="Pizza.Price" 
+            placeholder="Give pizza a price..." />
+        <br />
+        <button class="btn btn-primary mt-1" type="submit">
+            Add This Pizza
+        </button>
+    </form>
+</div>
