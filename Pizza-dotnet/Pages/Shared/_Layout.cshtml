@@ -1,5 +1,4 @@
-﻿@using static Pizza_dotnet.Pages.ActiveLink;
-@inject Microsoft.AspNetCore.Http.IHttpContextAccessor Accessor;
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor Accessor;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,11 +39,8 @@
                         <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
                     </li>
                     <li
-                        class="nav-item @(Accessor.HttpContext.Request.Path.Value == "/Pizzas" ? "active" : "" )">
-                        <a class="nav-link" asp-area="" asp-page="/Pizzas">Pizzas</a>
-                    </li>
-                    <li class="nav-item @(Accessor.HttpContext.Request.Path.Value == "/Orders" ? "active" : "" )">
-                        <a class="nav-link" asp-area="" asp-page="/Orders">Orders</a>
+                        class="nav-item @(Accessor.HttpContext.Request.Path.Value == "/Menu" ? "active" : "" )">
+                        <a class="nav-link" asp-area="" asp-page="/Menu">Menu</a>
                     </li>
                     <li class="nav-item @(Accessor.HttpContext.Request.Path.Value == "/About" ? "active" : "" )">
                         <a class="nav-link" asp-area="" asp-page="/About">About</a>
@@ -52,12 +48,21 @@
                     <li class="nav-item @(Accessor.HttpContext.Request.Path.Value == "/Contact" ? "active" : "" )">
                         <a class="nav-link" asp-area="" asp-page="/Contact">Contact</a>
                     </li>
+                    <li class="nav-item @(Accessor.HttpContext.Request.Path.Value == "/Orders" ? "active" : "" )">
+                        <a class="nav-link" asp-area="" asp-page="/Orders">Orders</a>
+                    </li>
+                    <li class="nav-item @(Accessor.HttpContext.Request.Path.Value == "/Pizzas" ? "active" : "" )">
+                        <a class="nav-link" asp-area="" asp-page="/Pizzas">Pizzas</a>
+                    </li>                
                 </ul>
+
+                <div class="d-flex align-content-center justify-content-center ml-3">
+                    <a href="#" class="btn btn-white btn-outline-white">Log In</a>
+                    <a href="#" class="btn btn-white btn-outline-white ml-2">Sign Up</a>
+                </div>
             </div>
         </div>
     </nav>
-
-    <h1>@ActiveLink.Message</h1>
 
     <main role="main">
         @RenderBody()
