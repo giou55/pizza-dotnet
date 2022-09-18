@@ -34,7 +34,7 @@ namespace Pizza_dotnet.Pages
             Pizzas = _context.Pizzas.ToList();
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPostAdd()
         {
             if (Pizza.TomatoSauce) Price += 1;
             if (Pizza.Cheese) Price += 1;
@@ -53,12 +53,24 @@ namespace Pizza_dotnet.Pages
             if (String.IsNullOrEmpty(pizza.Name))
             {
                 return RedirectToPage("/Pizzas");
-            } else
+            }
+            else
             {
                 _context.Pizzas.Add(pizza);
                 _context.SaveChanges();
                 return RedirectToPage("/Pizzas");
             }
+        }
+
+        public IActionResult OnPostRemove()
+        {
+            var pizza = _context.Pizzas.Find(Pizza.Id);
+            if (pizza != null)
+            {
+                _context.Pizzas.Remove(pizza);
+                _context.SaveChanges();
+            }
+            return RedirectToPage("/Pizzas");
         }
     }
 }

@@ -3,38 +3,46 @@
 @{
 }
 
-<h3>Our Pizzas</h3>
-
-<hr />
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Pizza Name</th>
-            <th>Price</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var pizza in Model.Pizzas)
-        {
-            <tr>
-                <td>@pizza.Id</td>
-                <td>@pizza.Name</td>
-                <td>@pizza.Price</td>
-            </tr>
-        }
-
-    </tbody>
-</table>
+<section>
+    <div class="container">
+        <h3>Our Pizzas</h3>
+        <div class="row">
+            @foreach (var pizza in Model.Pizzas)
+            {
+                <div class="col-lg-3 d-flex mb-sm-4 ftco-animate">
+                    <div class="staff">
+                        <div class="img mb-4" style="background-image: url(images/person_1.jpg);"></div>
+                        <div class="info text-center">
+                            <h3>@pizza.Name</h3>
+                            <span class="position">
+                                <p>Price: @pizza.Price euro</p>
+                            </span>
+                            <div class="text">
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                            </div>
+                            <a href="#" class="btn btn-white btn-outline-white">Edit</a>
+                            <button type="button"
+                                class="btn btn-primary"
+                                data-toggle="modal"
+                                data-target="#@pizza.Id">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
 
 <div class="text-center container">
-    <h1>Add a New Pizza</h1>
-    <form method="post" class="mx-auto mt-5 mb-5 px-5 pt-5 pb-5 rounded-5 bg-light col-4">
-        <input 
-            type="text" 
-            asp-for="Pizza.Name" 
-            placeholder="Give pizza a name..." />
+    <h3>Add a New Pizza</h3>
+    <form method="post" 
+        asp-page-handler="Add"
+        class="mx-auto mt-5 mb-5 px-5 pt-5 pb-5 rounded-5 bg-light col-4">
+        <input type="text"
+               asp-for="Pizza.Name"
+               placeholder="Give pizza a name..." />
         <br />
         <input type="checkbox"
                asp-for="Pizza.TomatoSauce"
@@ -68,13 +76,39 @@
                asp-for="Pizza.Pineapple"
                placeholder="Pineapple" />Pineapple
         <br />
-        <input 
-            type="number" 
-            asp-for="Pizza.Price" 
-            placeholder="Give pizza a price..." />
+        <input type="number"
+               asp-for="Pizza.Price"
+               placeholder="Give pizza a price..." />
         <br />
         <button class="btn btn-primary mt-1" type="submit">
             Add This Pizza
         </button>
     </form>
 </div>
+
+<!-- Modals -->
+@foreach (var pizza in Model.Pizzas)
+{
+    <div class="modal fade" id="@pizza.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-dark" id="exampleModalLongTitle">@pizza.Name</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure to delete?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <form method="post" asp-page-handler="Remove">
+                        <input hidden asp-for="Pizza.Id" value="@pizza.Id" />
+                        <button type="submit" class="btn btn-primary">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
