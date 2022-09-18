@@ -29,12 +29,31 @@ namespace Pizza_dotnet.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<float>("BasePrice")
-                        .HasColumnType("real");
+                    b.Property<string>("CustomerAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PizzaName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Timestamp")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("TotalPrice")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -49,13 +68,23 @@ namespace Pizza_dotnet.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool>("Beef")
+                    b.Property<bool>("Basil")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("Cheese")
+                    b.Property<bool>("Broccoli")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Feta")
                         .HasColumnType("bit");
 
                     b.Property<bool>("Ham")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Mozzarella")
                         .HasColumnType("bit");
 
                     b.Property<bool>("Mushroom")
@@ -65,19 +94,28 @@ namespace Pizza_dotnet.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Peperoni")
+                    b.Property<bool>("Olives")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("Pineapple")
+                    b.Property<bool>("Onions")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Parmesan")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Pepper")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Pepperoni")
                         .HasColumnType("bit");
 
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
-                    b.Property<bool>("TomatoSauce")
+                    b.Property<bool>("Sausage")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("Tuna")
+                    b.Property<bool>("Tomato")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");

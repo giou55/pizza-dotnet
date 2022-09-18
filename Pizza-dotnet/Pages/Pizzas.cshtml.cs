@@ -14,11 +14,9 @@ namespace Pizza_dotnet.Pages
         public PizzaModel Pizza { get; set; }
         public float Price { get; private set; }
         public bool TomatoSauce { get; private set; }
-        public bool Cheese { get; private set; }
-        public bool Peperoni { get; private set; }
+        public bool Feta { get; private set; }
+        public bool Pepperoni { get; private set; }
         public bool Mushroom { get; private set; }
-        public bool Tuna { get; private set; }
-        public bool Pineapple { get; private set; }
         public bool Ham { get; private set; }
         public bool Beef { get; private set; }
         public string Name { get; private set; }
@@ -36,18 +34,16 @@ namespace Pizza_dotnet.Pages
 
         public IActionResult OnPostAdd()
         {
-            if (Pizza.TomatoSauce) Price += 1;
-            if (Pizza.Cheese) Price += 1;
-            if (Pizza.Peperoni) Price += 1;
+            if (Pizza.Tomato) Price += 1;
+            if (Pizza.Feta) Price += 1;
+            if (Pizza.Pepperoni) Price += 1;
             if (Pizza.Mushroom) Price += 1;
-            if (Pizza.Tuna) Price += 1;
-            if (Pizza.Pineapple) Price += 10;
             if (Pizza.Ham) Price += 1;
-            if (Pizza.Beef) Price += 1;
 
             PizzaModel pizza = new PizzaModel();
             // pizzaOrder.id will be created automatically
             pizza.Name = Pizza.Name;
+            pizza.Description = Pizza.Description;
             pizza.Price = Pizza.Price;
 
             if (String.IsNullOrEmpty(pizza.Name))
@@ -68,6 +64,7 @@ namespace Pizza_dotnet.Pages
             if (pizza != null)
             {
                 pizza.Name = Pizza.Name;
+                pizza.Description = Pizza.Description;
                 pizza.Price = Pizza.Price;
                 _context.SaveChanges();
             }
