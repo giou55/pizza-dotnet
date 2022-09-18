@@ -62,6 +62,19 @@ namespace Pizza_dotnet.Pages
             }
         }
 
+        public IActionResult OnPostEdit()
+        {
+            var pizza = _context.Pizzas.Where(p => p.Id == Pizza.Id).SingleOrDefault();
+            if (pizza != null)
+            {
+                pizza.Name = Pizza.Name;
+                pizza.Price = Pizza.Price;
+                _context.SaveChanges();
+            }
+            
+            return RedirectToPage("/Pizzas");
+        }
+
         public IActionResult OnPostRemove()
         {
             var pizza = _context.Pizzas.Find(Pizza.Id);

@@ -3,43 +3,46 @@
 @{
 }
 
-<section>
-    <div class="container">
-        <h3>Our Pizzas</h3>
-        <div class="row">
-            @foreach (var pizza in Model.Pizzas)
-            {
-                <div class="col-lg-3 d-flex mb-sm-4 ftco-animate">
-                    <div class="staff">
-                        <div class="img mb-4" style="background-image: url(images/person_1.jpg);"></div>
-                        <div class="info text-center">
-                            <h3>@pizza.Name</h3>
-                            <span class="position">
-                                <p>Price: @pizza.Price euro</p>
-                            </span>
-                            <div class="text">
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                            </div>
-                            <a href="#" class="btn btn-white btn-outline-white">Edit</a>
-                            <button type="button"
-                                class="btn btn-primary"
-                                data-toggle="modal"
-                                data-target="#@pizza.Id">
-                                Delete
-                            </button>
+<div class="container text-center">
+    <h3>Our Pizzas</h3>
+    <div class="row">
+        @foreach (var pizza in Model.Pizzas)
+        {
+            <div class="col-lg-3 d-flex mb-sm-4 ftco-animate">
+                <div class="staff">
+                    <div class="img mb-4" style="background-image: url(images/person_1.jpg);"></div>
+                    <div class="info text-center">
+                        <h3>@pizza.Name</h3>
+                        <span class="position">
+                            <p>Price: @pizza.Price euro</p>
+                        </span>
+                        <div class="text">
+                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                         </div>
+                        <button type="button"
+                            class="btn btn-white btn-outline-white"
+                            data-toggle="modal"
+                            data-target="#edit-@pizza.Id">
+                            Edit
+                        </button>
+                        <button type="button"
+                            class="btn btn-primary"
+                            data-toggle="modal"
+                            data-target="#delete-@pizza.Id">
+                            Delete
+                        </button>
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
-</section>
+</div>
 
-<div class="text-center container">
+<div class="container text-center">
     <h3>Add a New Pizza</h3>
-    <form method="post" 
-        asp-page-handler="Add"
-        class="mx-auto mt-5 mb-5 px-5 pt-5 pb-5 rounded-5 bg-light col-4">
+    <form method="post"
+          asp-page-handler="Add"
+          class="mx-auto mt-5 mb-5 px-5 pt-5 pb-5 rounded-5 bg-light col-4">
         <input type="text"
                asp-for="Pizza.Name"
                placeholder="Give pizza a name..." />
@@ -89,7 +92,7 @@
 <!-- Modals -->
 @foreach (var pizza in Model.Pizzas)
 {
-    <div class="modal fade" id="@pizza.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="delete-@pizza.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -107,6 +110,70 @@
                         <input hidden asp-for="Pizza.Id" value="@pizza.Id" />
                         <button type="submit" class="btn btn-primary">Delete</button>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="edit-@pizza.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-dark" id="exampleModalLongTitle">@pizza.Name</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post"
+                      id="form-@pizza.Id"
+                      asp-page-handler="Edit"
+                      class="mx-auto mt-5 mb-5 px-5 pt-5 pb-5 rounded-5 bg-light">
+                        <input hidden asp-for="Pizza.Id" value="@pizza.Id" />
+                        <input type="text"
+                           asp-for="Pizza.Name"
+                           value="@pizza.Name" />
+                        <br />
+                        <input type="checkbox"
+                           asp-for="Pizza.TomatoSauce"
+                           placeholder="Tomato sauce" />Tomato Sauce
+                        <br />
+                        <input type="checkbox"
+                           asp-for="Pizza.Cheese"
+                           placeholder="Cheese" />Cheese
+                        <br />
+                        <input type="checkbox"
+                           asp-for="Pizza.Peperoni"
+                           placeholder="Peperoni" />Peperoni
+                        <br />
+                        <input type="checkbox"
+                           asp-for="Pizza.Ham"
+                           placeholder="Ham" />Ham
+                        <br />
+                        <input type="checkbox"
+                           asp-for="Pizza.Mushroom"
+                           placeholder="Mushroom" />Mushroom
+                        <br />
+                        <input type="checkbox"
+                           asp-for="Pizza.Tuna"
+                           placeholder="Tuna" />Tuna
+                        <br />
+                        <input type="checkbox"
+                           asp-for="Pizza.Beef"
+                           placeholder="Beef" />Beef
+                        <br />
+                        <input type="checkbox"
+                           asp-for="Pizza.Pineapple"
+                           placeholder="Pineapple" />Pineapple
+                        <br />
+                        <input type="number"
+                           asp-for="Pizza.Price"
+                           value="@pizza.Price" />
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" form="form-@pizza.Id" class="btn btn-primary">Save</button>
                 </div>
             </div>
         </div>
