@@ -12,7 +12,12 @@
 
                 <div class="col-md-7 col-sm-12 text-center ftco-animate">
                     <h1 class="mb-3 mt-5 bread">Our Menu</h1>
-                    <p class="breadcrumbs"><span class="mr-2"><a asp-area ="" asp-page="/Index">Home</a></span> <span>Menu</span></p>
+                    <p class="breadcrumbs">
+                        <span class="mr-2">
+                            <a asp-area ="" asp-page="/Index">Home</a>
+                        </span> 
+                        <span>Menu</span>
+                    </p>
                 </div>
 
             </div>
@@ -41,7 +46,41 @@
                         </div>
                         <div class="d-block">
                             <p>@pizza.Description</p>
-                            <p class="text-right"><a href="#" class="ml-2 btn btn-white btn-outline-white">Order</a></p>
+                            <p class="text-right">
+                                <button type="button"
+                                        class="btn btn-white btn-outline-white"
+                                        data-toggle="modal"
+                                        data-target="#order-@pizza.Id">
+                                        Order
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="order-@pizza.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark" id="exampleModalLongTitle">@pizza.Name</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post"
+                              id="form-@pizza.Id"
+                              asp-page-handler="Edit"
+                              class="mx-auto mt-5 mb-5 px-5 pt-5 pb-5 rounded-5 bg-light">
+                                <input hidden asp-for="Pizza.Id" value="@pizza.Id" />
+                                <input type="text" asp-for="PizzaName" />
+                                <input type="number" asp-for="Quantity" />
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" form="form-@pizza.Id" class="btn btn-primary">Order</button>
                         </div>
                     </div>
                 </div>
