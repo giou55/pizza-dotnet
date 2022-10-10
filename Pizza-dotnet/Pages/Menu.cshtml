@@ -72,19 +72,19 @@
                         <div class="modal-body">
                             <form method="post"
                               id="form-@pizza.Id"
-                              asp-page-handler="Edit"
+                              asp-page-handler="Add"
                               class="mx-auto mt-3 mb-3 px-3 pt-3 pb-3 rounded-3">
-                                <input hidden asp-for="Pizza.Id" value="@pizza.Id" />
+                                <input hidden asp-for="Order.PizzaName" value="@pizza.Name" />
                                 <label>Full Name:</label>
-                                <input type="text" class="w-100 mb-3" asp-for="CustomerName" />
+                                <input type="text" class="w-100 mb-3" asp-for="Order.CustomerName" required />
                                 <label>Address:</label>
-                                <input type="text" class="w-100 mb-3" asp-for="CustomerAddress" />
+                                <input type="text" class="w-100 mb-3" asp-for="Order.CustomerAddress" required />
                                 <label>Phone Number:</label>
-                                <input type="text" class="w-100 mb-3" asp-for="CustomerPhone" />
+                                <input type="text" class="w-100 mb-3" asp-for="Order.CustomerPhone" required />
                                 <label>Quantity:</label><br>
-                                <input type="number" class="w-100 mb-3" asp-for="Quantity" />
+                                <input type="number" class="w-100 mb-3" asp-for="Order.Quantity" required />
                                 <label>Total Price:</label><br>
-                                <input type="text" class="w-100" asp-for="TotalPrice" />
+                                <input type="text" class="w-100" asp-for="Order.TotalPrice" />
                             </form>
                         </div>
                         <div class="modal-footer">

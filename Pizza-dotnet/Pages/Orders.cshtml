@@ -10,14 +10,13 @@
         {
             <div class="col-lg-3 d-flex mb-sm-4 ftco-animate">
                 <div class="staff">
-                    <div class="img mb-4" style="background-image: url(images/person_1.jpg);"></div>
                     <div class="info text-center">
-                        <h3>@order.Id</h3>
-                        <span class="position">
-                            <p>Quantity: @order.Quantity</p>
-                        </span>
+                        <h3>Order Id: @order.Id</h3>
                         <div class="text">
-                            <p>@order.PizzaName</p>
+                            <p>Full Name: @order.CustomerName</p>
+                            <p>Address: @order.CustomerAddress</p>
+                            <p>Phone number: @order.CustomerPhone</p>
+                            <p>Order Time: @order.Timestamp</p>
                         </div>
                     </div>
                 </div>
