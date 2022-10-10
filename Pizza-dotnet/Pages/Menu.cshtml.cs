@@ -12,9 +12,13 @@ namespace Pizza_dotnet.Pages
 
         [BindProperty]
         public PizzaModel Pizza { get; set; }
-
-        public int Quantity { get; private set; }
         public string PizzaName { get; private set; }
+        public string CustomerName { get; private set; }
+        public string CustomerAddress { get; private set; }
+        public string CustomerPhone { get; private set; }
+        public int Quantity { get; private set; }
+        public string TotalPrice { get; private set; }
+        public string Timestamp { get; private set; }
 
         private readonly ApplicationDbContext _context;
         public MenuModel(ApplicationDbContext context)
