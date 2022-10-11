@@ -38,8 +38,7 @@
                     <li class="nav-item @(Accessor.HttpContext.Request.Path.Value == "/" ? "active" : "" )">
                         <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
                     </li>
-                    <li
-                        class="nav-item @(Accessor.HttpContext.Request.Path.Value == "/Menu" ? "active" : "" )">
+                    <li class="nav-item @(Accessor.HttpContext.Request.Path.Value == "/Menu" ? "active" : "" )">
                         <a class="nav-link" asp-area="" asp-page="/Menu">Menu</a>
                     </li>
                     <li class="nav-item @(Accessor.HttpContext.Request.Path.Value == "/About" ? "active" : "" )">
@@ -57,8 +56,12 @@
                 </ul>
 
                 <div class="d-flex align-content-center justify-content-center ml-3">
-                    <a href="#" class="btn btn-white btn-outline-white">Log In</a>
-                    <a href="#" class="btn btn-white btn-outline-white ml-2">Sign Up</a>
+                    <a class="btn btn-white btn-outline-white" asp-area="" asp-page="/Login">
+                        Log In
+                    </a>
+                    <a class="btn btn-white btn-outline-white ml-2" asp-area="" asp-page="/Register">
+                        Register
+                    </a>
                 </div>
             </div>
         </div>

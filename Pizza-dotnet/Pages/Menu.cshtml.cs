@@ -2,13 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Pizza_dotnet.Data;
 using Pizza_dotnet.Models;
+using System.Diagnostics;
 
 namespace Pizza_dotnet.Pages
 {
     public class MenuModel : PageModel
     {
         public List<PizzaModel> Pizzas = new List<PizzaModel>();
-        //public List<OrderModel> Orders = new List<OrderModel>();
 
         [BindProperty]
         public PizzaModel Pizza { get; set; }
@@ -33,7 +33,6 @@ namespace Pizza_dotnet.Pages
         public void OnGet()
         {
             Pizzas = _context.Pizzas.ToList();
-            //Orders = _context.Orders.ToList();
         }
 
         public IActionResult OnPostAdd()
@@ -42,7 +41,7 @@ namespace Pizza_dotnet.Pages
             order.PizzaName = Order.PizzaName;
             order.CustomerName = Order.CustomerName;
             order.CustomerAddress = Order.CustomerAddress;
-            order.CustomerPhone = Order.CustomerPhone;    
+            order.CustomerPhone = Order.CustomerPhone;
             order.Quantity = Order.Quantity;
             order.TotalPrice = 0.00f;
             order.Timestamp = DateTime.Now.ToString();
@@ -50,7 +49,7 @@ namespace Pizza_dotnet.Pages
             _context.Orders.Add(order);
             _context.SaveChanges();
 
-            //Console.WriteLine(order.Timestamp);
+            Trace.WriteLine("Hello from console");
             return RedirectToPage("/Menu");
         }
     }
